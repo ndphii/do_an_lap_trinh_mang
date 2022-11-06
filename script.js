@@ -39,8 +39,6 @@ window.addEventListener("load",()=>{
 const searchStates =async searchText =>{
     const res = await  fetch('./data/citylist.json');
     const states = await res.json();
-    
-    //console.log(states);
     let matches= states.filter(state =>{
         const regex = new RegExp(`^${searchText}`,'gi');
         return state.name.match(regex) || state.country.match(regex);
@@ -54,7 +52,7 @@ const searchStates =async searchText =>{
  const outputHtml = matches =>{
     if (matches.length >0 ){
         const html = matches.map(match =>
-        `<button id="btnitemsearch" type="button" class="list-group-item list-group-item-action" value="${match.name}">
+        `<button onclick="getnamecitybybutton(this)" id="btnitemsearch" type="button" class="list-group-item list-group-item-action" value="${match.name}">
             ${match.name} <span>(${match.country})</span>
         </button>
         `
@@ -65,8 +63,6 @@ const searchStates =async searchText =>{
 
 input_city_name.addEventListener('input',()=> searchStates(input_city_name.value));
 
-
-
 btn_find_cityname.addEventListener('click',()=>{
     
     getWeatherDataByCityName(inputnamecity.value);
@@ -74,44 +70,42 @@ btn_find_cityname.addEventListener('click',()=>{
     inputnamecity.value='';
     
 });
-
+function getnamecitybybutton(city){
+    getWeatherDataByCityName(city.value);
+    inputnamecity.value="";
+    matchlist.innerHTML = "";
+}
 function getWeatherDataByCityName(city) {
-   // navigator.geolocation.getCurrentPosition((success) => {
-        
-        //let {latitude, longitude } = success.coords;
         fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&lang=vi&appid=${API_KEY}`).then(res => res.json()).then(data => {
-        //fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`).then(res => res.json()).then(data => {
-        //console.log(data)
         showWeatherData(data);
         })
-
-    
 }
 function getWeatherData () {
     navigator.geolocation.getCurrentPosition((success) => {
-        
         let {latitude, longitude } = success.coords;
-        //fetch(`https://api.openweathermap.org/data/2.5/forecast?q='${cyti}'&appid=${API_KEY}`).then(res => res.json()).then(data => {
         fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&lang=vi&appid=${API_KEY}`).then(res => res.json()).then(data => {
         console.log(data)
         showWeatherData(data);
         })
-
     })
 }
 
 function showWeatherData (data){
-    //Hoàng hôn bình minh
     let {sunrise, sunset} = data.city;
     let {temp,temp_max,temp_min,humidity,sea_level,pressure} = data.list[0].main;
-    let {description,icon} = data.list[0].weather[0];
+    let {main,description,icon} = data.list[0].weather[0];
     let {speed} = data.list[0].wind;
     var nhietdo = Math.round(temp-273);
     var nhietdocaonhat = Math.round(temp_max-273);
     var nhietdothapnhat = Math.round(temp_min-273);
+    var rains=0;
     timezone.innerHTML = data.city.country + " / " +data.city.name ;
-    countryEl.innerHTML = data.city.coord.lat + 'N  - ' + data.city.coord.lon+'E'
-
+    countryEl.innerHTML = data.city.coord.lat + 'N  - ' + data.city.coord.lon+'E';
+    if(main==="Rain"){
+        const x = Object.values(data.list[0].rain);
+        rains=x[0];
+        console.log(rains[0]);
+    }
     nhietdoto.innerHTML = 
     `<div class="temp">
         <div class="textnhiet">${nhietdo}</div>
@@ -126,7 +120,6 @@ function showWeatherData (data){
     </div>
     `
     ;
-
     currentWeatherItemsEl.innerHTML = 
     `<div class="weather-item">
         <div>Độ ẩm</div>
@@ -155,7 +148,7 @@ function showWeatherData (data){
     </div>
     <div class="weather-item">
         <div>Lượng mưa 3h qua</div>
-        <div>3.3 mm</div>
+        <div>${rains} mm</div>
     </div>
     
     `;
@@ -173,10 +166,8 @@ function showWeatherData (data){
                 <div class="templ">Cao nhất - ${nhietdocaonhat}&#176;C</div>
                 <div class="templ">Thấp nhất - ${nhietdothapnhat}&#176;C</div>
             </div>
-            
             `
         }else if(idx!=0 && checktimday==="00:00:00") {           
-                
                //console.log("list:"+idx+" ngày cập nhật:"+day.dt_txt+" nhiệt:"+nhietdotrungbinh+"trạng thái:"+descriptiondubao);
                otherDayForcast += `
                     <div class="weather-forecast-item">
@@ -186,13 +177,7 @@ function showWeatherData (data){
                         <div class="templ">${descriptiondubao}</div>
                     </div>
                  `
-               
-           
-           
-            
         }
     })
-
-
     weatherForecastEl.innerHTML = otherDayForcast;
 }

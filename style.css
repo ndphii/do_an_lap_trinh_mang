@@ -41,6 +41,7 @@ body{
     padding-left: 85px;
     margin-top: 35px;
     padding-bottom: 10px;
+    
  }
 
  .iconstemp>img{
@@ -211,13 +212,35 @@ body{
     z-index: 3;
     position: absolute;
     padding-right: 5px;
+    width: 84%;
 }
 
 .list-group-item{
     line-height: 10px;
-    width: 100%;
+    width:unset;
+   
 }
-
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background-color: white; 
+    border-radius: 5px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: gray; 
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #d46d0d; 
+  }
 @media only screen and  (max-width:730px){
     .iconstemp>img{
         text-align: center;
