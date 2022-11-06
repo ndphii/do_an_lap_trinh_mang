@@ -104,7 +104,7 @@ function showWeatherData (data){
     //Hoàng hôn bình minh
     let {sunrise, sunset} = data.city;
     let {temp,temp_max,temp_min,humidity,sea_level,pressure} = data.list[0].main;
-    let {main,icon} = data.list[0].weather[0];
+    let {description,icon} = data.list[0].weather[0];
     let {speed} = data.list[0].wind;
     var nhietdo = Math.round(temp-273);
     var nhietdocaonhat = Math.round(temp_max-273);
@@ -119,7 +119,7 @@ function showWeatherData (data){
     </div>
     <div class="iconstemp"><img src="http://openweathermap.org/img/wn/${icon}@2x.png"></div>
     <div class="description">
-        <div>${main}</div>
+        <div>${description}</div>
     </div>
     <div class="temp_min_max">
         Nhiệt độ cao nhất :${nhietdocaonhat}°C - Nhiệt độ thấp nhất :${nhietdothapnhat}°C
@@ -162,7 +162,9 @@ function showWeatherData (data){
    
     let otherDayForcast = ''
     data.list.forEach((day, idx) => {
-       
+        var checktimday = window.moment(day.dt_txt).format('HH:mm:ss');
+        var nhietdotrungbinh =Math.round(day.main.temp-273);
+        var descriptiondubao =day.weather[0].description;
         if(idx == 0){
             currentTempEl.innerHTML = `
             <img src="http://openweathermap.org/img/wn/${icon}.png" alt="weather icon" class="w-icon">
@@ -173,22 +175,21 @@ function showWeatherData (data){
             </div>
             
             `
-        }else {
-            var tma=Math.round(day.main.temp_max-273);
-            var tmi=Math.round(day.main.temp_min-273);
-            var checktimday = window.moment(day.dt*1000).format('HH:mm:ss');
-            var x = String(checktimday);
-            if(x==="01:00:00"){
-            otherDayForcast += `
-            <div class="weather-forecast-item">
-                <div class="day">${window.moment(day.dt*1000).format('ddd DD/MM')}</div>
-                <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
-                <div class="templ">Cao nhất - ${tmi}&#176;C</div>
-                <div class="templ">Thấp nhất - ${tmi}&#176;C</div>
-            </div>
+        }else if(idx!=0 && checktimday==="00:00:00") {           
+                
+               //console.log("list:"+idx+" ngày cập nhật:"+day.dt_txt+" nhiệt:"+nhietdotrungbinh+"trạng thái:"+descriptiondubao);
+               otherDayForcast += `
+                    <div class="weather-forecast-item">
+                        <div class="day">${window.moment(day.dt*1000).format('ddd DD/MM')}</div>
+                        <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
+                        <div class="templ">${nhietdotrungbinh}&#176;C</div>
+                        <div class="templ">${descriptiondubao}</div>
+                    </div>
+                 `
+               
+           
+           
             
-            `
-           }
         }
     })
 
