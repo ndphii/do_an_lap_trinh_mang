@@ -37,7 +37,9 @@ window.addEventListener("load",()=>{
 });
 
 const searchStates =async searchText =>{
+
     const res = await  fetch('../data/citylist.json');
+
     const states = await res.json();
     let matches= states.filter(state =>{
         const regex = new RegExp(`^${searchText}`,'gi');
