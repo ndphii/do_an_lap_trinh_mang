@@ -37,7 +37,7 @@ window.addEventListener("load",()=>{
 });
 
 const searchStates =async searchText =>{
-    const res = await  fetch('./data/citylist.json');
+    const res = await  fetch('../data/citylist.json');
     const states = await res.json();
     let matches= states.filter(state =>{
         const regex = new RegExp(`^${searchText}`,'gi');
@@ -89,7 +89,16 @@ function getWeatherData () {
         })
     })
 }
-
+function getbackground(main){
+    var backgroundImage ;
+    if(main==="Clear"){ backgroundImage = document.body.style.backgroundImage = "url('./imgbackground/sun.jpg')"}
+    else if ( main==="Clouds"){backgroundImage = document.body.style.backgroundImage = "url('./imgbackground/cloud.jpg')"}
+    else if ( main==="Rain"){backgroundImage = document.body.style.backgroundImage = "url('./imgbackground/rain.jpg')"}
+    else if ( main==="Snow"){backgroundImage = document.body.style.backgroundImage = "url('./imgbackground/snow.jpg')"}
+    else if ( main==="Thunderstorm"){backgroundImage = document.body.style.backgroundImage = "url('./imgbackground/thunder.jpg')"}
+    else{}
+    return backgroundImage;
+}
 function showWeatherData (data){
     let {sunrise, sunset} = data.city;
     let {temp,temp_max,temp_min,humidity,sea_level,pressure} = data.list[0].main;
@@ -106,6 +115,7 @@ function showWeatherData (data){
         rains=x[0];
         console.log(rains[0]);
     }
+    getbackground(main);
     nhietdoto.innerHTML = 
     `<div class="temp">
         <div class="textnhiet">${nhietdo}</div>
@@ -113,7 +123,7 @@ function showWeatherData (data){
     </div>
     <div class="iconstemp"><img src="http://openweathermap.org/img/wn/${icon}@2x.png"></div>
     <div class="description">
-        <div>${description}</div>
+        <div class="contentdes">${description}</div>
     </div>
     <div class="temp_min_max">
         Nhiệt độ cao nhất :${nhietdocaonhat}°C - Nhiệt độ thấp nhất :${nhietdothapnhat}°C

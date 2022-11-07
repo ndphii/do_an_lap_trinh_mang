@@ -7,7 +7,7 @@
 }
 
 body{
-    background:url('https://images.unsplash.com/photo-1621274403997-37aace184f49?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1');
+    background:url('./imgbackground/quandang.jpg');
     background-repeat: no-repeat;
     background-size:cover;
     overflow:hidden;
@@ -150,6 +150,7 @@ body{
     align-items: center;
     justify-content: center;
     overflow-y: hidden;
+    
 }
 
 .future-forecast .today{
@@ -336,7 +337,82 @@ body{
         color: #ffffff;
     }
 }
+@media only screen and  (max-width:414px){
+   .future-forecast{
+    max-height: 200px;
+   }
+   .weather-forecast .weather-forecast-item{
+    padding-top: 20px;
+    height: 160px;
+   }
+   .weather-forecast .weather-forecast-item .day {
+    margin-top: 0px;
+    background: #3C3C44;
+    border-radius: 50px;
+    text-align: center;
+    width: 100px;
+    padding: 0;
+    }
+   .w-icon{
+        margin: -20px -20px;
+    }
+    .today> img{
+        margin: 0;
+    }
 
+}
+@media only screen and  (max-width:375px){
+.current-info .others{
+    
+    height: 170px;
+    width: 55%;
+}
+.nhiet{
+    margin: -180px 165px;
+    max-width: 45%;
+}
+.textnhiet{
+    font-size: 5em;
+    margin: -35px 10px;
+}
+.textdoc{
+    margin: -70px 110px;
+}
+.iconstemp{
+   
+    margin-left: 0;
+}
+.iconstemp> img{
+    margin-top: -12px;
+    margin-left: 68px;
+}
+.description {
+    text-align: left;
+    margin: -20px 65px;
+    font-size: 20px;
+    white-space: nowrap;
+}
+.temp_min_max {
+    margin-top: -26px;
+    white-space: pre-wrap;
+    width: 195px;
+    font-size: 12px;
+    text-align: center;
+    padding-left: 25px; 
+}
+.future-forecast {
+    max-height: 230px;
+}
+.date-container {
+ margin-top: 0px; 
+}
+.contentdes{
+    font-size: 15px;
+    margin-left: -30px;
+    margin-bottom: 5px;
+    width: 0;
+}
+}
 @media only screen and (max-width: 1400px){
     .future-forecast{
         align-items: none;
