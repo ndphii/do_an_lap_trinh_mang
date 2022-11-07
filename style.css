@@ -243,6 +243,9 @@ body{
     background: #d46d0d; 
   }
 @media only screen and  (max-width:730px){
+    .match-list{
+        width: 93%;
+    }
     .iconstemp>img{
         text-align: center;
         margin-left: -130px;
@@ -338,6 +341,9 @@ body{
     }
 }
 @media only screen and  (max-width:414px){
+    .match-list{
+        width: 93%;
+    }
    .future-forecast{
     max-height: 200px;
    }
@@ -408,9 +414,12 @@ body{
 }
 .contentdes{
     font-size: 15px;
-    margin-left: -30px;
+    margin-left: 0px;
     margin-bottom: 5px;
     width: 0;
+}
+.match-list{
+    width: 93%;
 }
 }
 @media only screen and (max-width: 1400px){
