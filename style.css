@@ -427,5 +427,8 @@ body{
         align-items: none;
         overflow-x: scroll;
     }
+    .match-list{
+        width: 84%;
+    }
     
 }
