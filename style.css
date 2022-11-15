@@ -46,13 +46,14 @@ body{
 
  .iconstemp>img{
    text-align: center;
-   margin-left: -95px;
+   margin-left: -86px;
  }
  .description{
     font-family: 'Poppins', sans-serif;
     font-size: 1.5em;
     text-align: center;
     margin-top: -20px;
+    justify-content: center;
 }
  .temp_min_max{
     font-weight: bold;
@@ -96,6 +97,7 @@ body{
     height: auto;
     width: 20%;
     margin-top: 10%;
+    
 }
 
 .place-container .time-zone {
@@ -127,7 +129,7 @@ body{
     display: flex;
     flex-direction: column;
     background: rgba(24,24,27, 0.6);
-    padding:20px;
+    padding:10px;
     border-radius: 10px;
     margin: 10px 0;
     border: 1px solid #eee;
@@ -180,6 +182,7 @@ body{
 
 .future-forecast .weather-forecast{
     display: flex;
+    
 }
 
 .weather-forecast .weather-forecast-item{
@@ -204,7 +207,7 @@ body{
 .weather-forecast .weather-forecast-item .templ{
     font-weight: bold;
     font-size: 12px;
-    
+    white-space: nowrap;
 }
 .match-list{
     max-height: 200px;
@@ -258,7 +261,7 @@ body{
     }
     .description{
         text-align: right;
-        padding-right:40px;
+        padding-right: -21px;
     }
     .textdoc {
         font-size: 3em;
@@ -272,11 +275,10 @@ body{
         margin-top: -40px;
     }
       .temp {
-        padding-left: 30px;
+        padding-left: 0;
         margin-top: 0;
         margin-bottom: -13px;
         padding-bottom: 10px;
-        
     }
     .temp_min_max {
         font-weight: bold;
@@ -294,7 +296,6 @@ body{
     .future-forecast{
         justify-content: start;
         align-items: none;
-        overflow-y: scroll;
         position: fixed;
     }
 
@@ -307,7 +308,7 @@ body{
     .date-container .time{
         font-size: 50px;
     }
-
+    
     .date-container #am-pm{
         font-size: 20px;
     }
@@ -319,7 +320,7 @@ body{
     
     .place-container{
         text-align: center;
-        margin-top: 15px;
+        margin-top: 29px;
     }
     .texticon{
     display: none;
@@ -340,7 +341,8 @@ body{
         color: #ffffff;
     }
 }
-@media only screen and  (max-width:414px){
+@media only screen and (max-width:414px){
+    
     .match-list{
         width: 93%;
     }
@@ -365,46 +367,71 @@ body{
     .today> img{
         margin: 0;
     }
+    .contentdes {
+        margin-right: 70;
+        text-align: center;
+        margin: 0;
+    }
+    .iconstemp>img {
+        text-align: center;
+        margin-left: -167px;
+        margin-top: 13px;
+    }
+    
+    .nhiet {
+    margin-top: -7px;
+    }
 
 }
 @media only screen and  (max-width:375px){
 .current-info .others{
     
-    height: 170px;
-    width: 55%;
+height: 170px;
+    
+width: 55%;
+    
+margin-left: -11px;
+}
+.current-info .others .weather-item {
+    font-size: 14px;
+    white-space:nowrap;
 }
 .nhiet{
-    margin: -180px 165px;
+    margin: -180px 154px;
     max-width: 45%;
+    background: rgba(24,24,27, 0.6);
+    border-radius: 10px;
+    border: 1px solid #eee;
+    margin-left: 12.5em;
 }
 .textnhiet{
     font-size: 5em;
-    margin: -35px 10px;
+    margin: -25px -3px;
 }
 .textdoc{
-    margin: -70px 110px;
+    margin: -70px 93px;
 }
 .iconstemp{
    
-    margin-left: 0;
+    margin-left: -12px;
 }
 .iconstemp> img{
-    margin-top: -12px;
-    margin-left: 68px;
+    margin-top: -23px;
+    margin-left: 21px;
 }
 .description {
     text-align: left;
-    margin: -20px 65px;
-    font-size: 20px;
+    margin: -20px -3px;
+    font-size: 23px;
     white-space: nowrap;
 }
 .temp_min_max {
-    margin-top: -26px;
-    white-space: pre-wrap;
-    width: 195px;
-    font-size: 12px;
-    text-align: center;
-    padding-left: 25px; 
+    margin-top: -23px;
+    white-space: break-spaces;
+    /* width: 76px; */
+    font-size: 10px;
+    /* text-align: center; */
+    margin-left: -8px;
 }
 .future-forecast {
     max-height: 230px;
@@ -414,21 +441,26 @@ body{
 }
 .contentdes{
     font-size: 15px;
-    margin-left: 0px;
+    /* margin-left: -8px; */
+    /* padding-left: 37px; */
+    text-align: inherit;
     margin-bottom: 5px;
-    width: 0;
+    
 }
-.match-list{
-    width: 93%;
-}
+
 }
 @media only screen and (max-width: 1400px){
     .future-forecast{
-        align-items: none;
-        overflow-x: scroll;
-    }
-    .match-list{
-        width: 84%;
+        position: fixed;
+        max-height: 13.1em;
     }
     
+    
+}
+@media only screen and (min-width: 1401px){
+    .future-forecast{
+        align-items: none;
+       
+    }
+       
 }

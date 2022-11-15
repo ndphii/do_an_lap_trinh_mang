@@ -13,14 +13,28 @@
     <title>Weather</title>
 </head>
 <body>
-    
+    <style>
+        img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"] {
+     display: none;
+     }
+     small{
+         margin-top:-20px;
+         position: absolute;
+         text-decoration:none;
+     }
+     a{color: #ffc107;
+     font-weight: bold;
+     text-decoration: none;
+     background-color: transparent;}
+     </style>
     <div class="container">
         <div class="contensearch  ">
+            <small><a href="https://github.com/ndphii/do_an_lap_trinh_mang">Mã Nguồn tại github của tôi ndphii[20it450-vku]</a></small>
             <div class="search">
                 <div class="input-group mb-3">
                     <input autocomplete="off" id="input_city_name" type="text" class="form-control basicAutoComplete" placeholder="Thành Phố . . ." aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                    <button id="btn_find_city_name" class="btn btn-secondary" type="button">Tìm</button>
+                    <button id="btn_find_city_name" class="btn btn-dark" type="button">Tìm</button>
                     </div>
                 </div>
             </div>
@@ -50,7 +64,7 @@
         </div>
      
     </div>
-
+    
     <div class="future-forecast container-fluid" >
         <div class="today" id="current-temp">
             <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">

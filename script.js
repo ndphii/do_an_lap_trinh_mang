@@ -124,11 +124,11 @@ function showWeatherData (data){
         <div class="textdoc">°C</div>
     </div>
     <div class="iconstemp"><img src="http://openweathermap.org/img/wn/${icon}@2x.png"></div>
-    <div class="description">
-        <div class="contentdes">${description}</div>
+    <div class="description row">
+        <div class="contentdes ">${description}</div>
     </div>
     <div class="temp_min_max">
-        Nhiệt độ cao nhất :${nhietdocaonhat}°C - Nhiệt độ thấp nhất :${nhietdothapnhat}°C
+        Nhiệt độ cao nhất :${nhietdocaonhat}°C  -  Nhiệt độ thấp nhất :${nhietdothapnhat}°C
     </div>
     `
     ;
