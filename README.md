@@ -1,5 +1,4 @@
 # do_an_lap_trinh_mang
- sử dụng keyapi của " https://openweathermap.org/forecast5 " Openweather dự báo trước 5 ngày và 3h tiếp theo mỗi ngày
-lấy khoá key ở https://home.openweathermap.org/api_keys và dán nó vào const API_KEY ='.....'; ở file js
-lấy tên biến của api từ json bằng cách console.log(data); và tìm tên bến ở 'cosoler f12' trong trình duyệt
-website https://apiweatherteam12vku.000webhostapp.com/
+- Sử dụng keyapi của " https://openweathermap.org/forecast5 " Openweather dự báo trước 5 ngày và 3h tiếp theo mỗi ngày,thay đổi key ở const API_KEY ='your_key' file js
+- Truy vấn tên biến của api từ json bằng cách console.log(data); 
+- website https://apiweatherteam12vku.000webhostapp.com/
