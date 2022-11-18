@@ -3,4 +3,4 @@
 - Truy vấn tên biến của api từ json bằng cách console.log(data); 
 - website https://apiweatherteam12vku.000webhostapp.com/
 # ScreenShots
-<img alt="fragment_create" src="background/preview.jpg" width="30%" > 
+<img alt="fragment_create" src="imgbackground/preview.jpg" width="30%" > 
