@@ -66,11 +66,13 @@ const searchStates =async searchText =>{
 input_city_name.addEventListener('input',()=> searchStates(input_city_name.value));
 
 btn_find_cityname.addEventListener('click',()=>{
-    
-    getWeatherDataByCityName(inputnamecity.value);
-    searchStates('');
-    inputnamecity.value='';
-    
+    if(inputnamecity.value===''){
+       alert("không để trống")        
+    }else{
+        getWeatherDataByCityName(inputnamecity.value);
+        searchStates('');
+        inputnamecity.value='';
+    }
 });
 function getnamecitybybutton(city){
     getWeatherDataByCityName(city.value);
