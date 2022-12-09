@@ -29,7 +29,7 @@
      </style>
     <div class="container">
         <div class="contensearch  ">
-            <small><a href="https://github.com/ndphii/do_an_lap_trinh_mang">Mã Nguồn tại github của tôi ndphii[20it450-vku]</a></small>
+            <small><a href="https://github.com/ndphii/do_an_lap_trinh_mang">Mã Nguồn tại github được thực hiện bởi sinh viên vku</a></small>
             <div class="search">
                 <div class="input-group mb-3">
                     <input autocomplete="off" id="input_city_name" type="text" class="form-control basicAutoComplete" placeholder="Thành Phố . . ." aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -60,10 +60,151 @@
                 </div>
                 <div class="time-zone" id="time-zone"></div>
                 <div id="country" class="country">Da Nang</div>
+                <button id="btnxemchitiet" type="button" class="btn btn-dark btnchitiet" data-toggle="modal" data-target="#exampleModalCenter">
+                <span class="chitiet">Chi tiết dự báo hôm nay</span>
+                </button>
             </div>
         </div>
      
     </div>
+    
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <span class="modal-title" id="exampleModalCenterTitle">
+                  <div class="datec" id="date">Monday, 25 May</div>
+                  <div id="country" class="countryc">Da Nang</div>
+                  <div class="time-zonec" id="time-zone">(VN)</div>
+                </span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="horizontal-scrollable">
+                <div class="row text-center">
+                   <div id="scrollmenuchitiet" class="scrollmenu container-fluid">
+                      <div class="nav-item col-xl-2">
+                          <div class="card " style="background-color: none;">
+                          <div class="card-body">
+                            <h5 class="card-title">12:00</h5>
+                            <img class="card-img-top" src="https://openweathermap.org/img/wn/10n@2x.png" alt="Card image cap">
+                            <p class="card-text">nắng nhẹ</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="nav-item col-xl-2">
+                        <div class="card ">
+                          <div class="card-body">
+                            <h5 class="card-title">12:00</h5>
+                            <img class="card-img-top" src="https://openweathermap.org/img/wn/10n@2x.png" alt="Card image cap">
+                            <p class="card-text">nắng nhẹ<br>20°C</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="nav-item col-xl-2">
+                        <div class="card " >
+                          <div class="card-body">
+                            <h5 class="card-title">12:00</h5>
+                            <img class="card-img-top" src="https://openweathermap.org/img/wn/10n@2x.png" alt="Card image cap">
+                            <p class="card-text">nắng nhẹ<br>20°C</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="nav-item col-xl-2">
+                        <div class="card " style="background-color: none;">
+                        <div class="card-body">
+                          <h5 class="card-title">12:00</h5>
+                          <img class="card-img-top" src="https://openweathermap.org/img/wn/10n@2x.png" alt="Card image cap">
+                          <p class="card-text">nắng nhẹ</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="nav-item col-xl-2">
+                      <div class="card ">
+                        <div class="card-body">
+                          <h5 class="card-title">12:00</h5>
+                          <img class="card-img-top" src="https://openweathermap.org/img/wn/10n@2x.png" alt="Card image cap">
+                          <p class="card-text">nắng nhẹ<br>20°C</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="nav-item col-xl-2">
+                      <div class="card " >
+                        <div class="card-body">
+                          <h5 class="card-title">12:00</h5>
+                          <img class="card-img-top" src="https://openweathermap.org/img/wn/10n@2x.png" alt="Card image cap">
+                          <p class="card-text">nắng nhẹ<br>20°C</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="nav-item col-xl-2">
+                      <div class="card " style="background-color: none;">
+                      <div class="card-body">
+                        <h5 class="card-title">12:00</h5>
+                        <img class="card-img-top" src="https://openweathermap.org/img/wn/10n@2x.png" alt="Card image cap">
+                        <p class="card-text">nắng nhẹ</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="nav-item col-xl-2">
+                    <div class="card ">
+                      <div class="card-body">
+                        <h5 class="card-title">12:00</h5>
+                        <img class="card-img-top" src="https://openweathermap.org/img/wn/10n@2x.png" alt="Card image cap">
+                        <p class="card-text">nắng nhẹ<br>20°C</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="nav-item col-xl-2">
+                    <div class="card " >
+                      <div class="card-body">
+                        <h5 class="card-title">12:00</h5>
+                        <img class="card-img-top" src="https://openweathermap.org/img/wn/10n@2x.png" alt="Card image cap">
+                        <p class="card-text">nắng nhẹ<br>20°C</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="nav-item col-xl-2">
+                    <div class="card " style="background-color: none;">
+                    <div class="card-body">
+                      <h5 class="card-title">12:00</h5>
+                      <img class="card-img-top" src="https://openweathermap.org/img/wn/10n@2x.png" alt="Card image cap">
+                      <p class="card-text">nắng nhẹ</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="nav-item col-xl-2">
+                  <div class="card ">
+                    <div class="card-body">
+                      <h5 class="card-title">12:00</h5>
+                      <img class="card-img-top" src="https://openweathermap.org/img/wn/10n@2x.png" alt="Card image cap">
+                      <p class="card-text">nắng nhẹ<br>20°C</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="nav-item col-xl-2">
+                  <div class="card " >
+                    <div class="card-body">
+                      <h5 class="card-title">12:00</h5>
+                      <img class="card-img-top" src="https://openweathermap.org/img/wn/10n@2x.png" alt="Card image cap">
+                      <p class="card-text">nắng nhẹ<br>20°C</p>
+                    </div>
+                  </div>
+                </div>
+                    </div>
+                </div>
+                </div>
+              </div>
+              <!--
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+              -->
+            </div>
+          </div>
+        </div>
     
     <div class="future-forecast container-fluid" >
         <div class="today" id="current-temp">

@@ -108,6 +108,7 @@ body{
     
 
 }
+
 .iconplace{
     width: 100%;
     margin-bottom: -15px;
@@ -123,6 +124,7 @@ body{
     font-weight: 700;
     white-space: nowrap; 
     font-family: 'Poppins', sans-serif;
+    padding-bottom: 20px;
 }
 
 .current-info .others{
@@ -224,6 +226,80 @@ body{
     width:unset;
    
 }
+
+div.scrollmenu {
+  background-color: #333;
+  opacity: 0.9;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 222px;
+  border-radius: 0.3em;
+  
+}
+.modal-title{
+  white-space: nowrap !important; 
+  float: left;
+  font-size: 2rem !important;
+}
+.time-zonec , .datec , .countryc{
+  float: left;
+}
+.datec{
+  padding-right: 15px;
+}
+
+div.scrollmenu div.nav-item {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  width: 160px;
+  padding-top:10px ;
+}
+.chitiet{
+    color:#ffc107 ;
+}
+
+div.modal-body {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    
+}
+button.close {
+    color: white !important;
+}
+div.modal-content{
+    background-color: rgb(115.25, 183.45, 222.75,0.95);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 0.3rem;
+}
+div.modal-dialog {
+    max-width: 100% !important;
+    margin-left: 1.75rem  !important; 
+    margin-right: 1.75rem  !important; 
+}
+.card{
+  height: 190px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  border: 1px solid rgb(255, 255, 255,0.6) !important;
+}
+.card-text{
+    font-size: 11px;
+    text-align: center;
+    line-height: 25px;
+    font-weight: bold;
+}
+.card-body {
+    padding: 0.7rem !important;
+}
+.card-img-top{
+  width: 80px !important;
+  height: 80px !important;
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
@@ -245,9 +321,25 @@ body{
   ::-webkit-scrollbar-thumb:hover {
     background: #d46d0d; 
   }
+  @media only screen and  (min-width:375px) and (max-width:413px){
+    .btnchitiet {
+        margin-top: -40px !important;
+        margin-left: 157px !important;
+    }
+    
+  }
+  @media only screen and  (max-width:73px) and (max-width:2000px){
+    .btnchitiet{
+        margin: 0 !important;
+    }
+  }
 @media only screen and  (max-width:730px){
     .match-list{
         width: 93%;
+    }
+    .iconstemp{
+        justify-content: center;
+        text-align: center;
     }
     .iconstemp>img{
         text-align: center;
@@ -316,12 +408,14 @@ body{
     .date-container .date{
         font-size: 20px;
     }
- 
-    
-    .place-container{
-        text-align: center;
-        margin-top: 29px;
+    .place-container {
+        text-align: left;
+        margin-top: 15px;
     }
+    .country{
+        padding-left: 15px;
+    }
+    
     .texticon{
     display: none;
     margin-top: 10px;
@@ -342,7 +436,10 @@ body{
     }
 }
 @media only screen and (max-width:414px){
-    
+    .btnchitiet{
+        margin-top: -116px;
+    margin-left: 196px;
+    }
     .match-list{
         width: 93%;
     }

@@ -10,12 +10,15 @@ const btn_find_cityname =document.getElementById('btn_find_city_name')
 const inputnamecity =document.getElementById('input_city_name');
 const matchlist =document.getElementById('match-list');
 const btngetitem =document.getElementById("btnitemsearch");
-
+const xemchitiet =document.getElementById("btnxemchitiet");
+const chitietscroll=document.getElementById("scrollmenuchitiet");
+const thongtinchitiet = document.getElementById("exampleModalCenterTitle");
 const days = ['Chủ Nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7']
 const months = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
 
 const API_KEY ='1779ca818b59557aa48558aec376d6db';
 
+var long,lat,times;
 
 setInterval(() => {
     const time = new Date();
@@ -30,7 +33,7 @@ setInterval(() => {
     timeEl.innerHTML = (hoursIn12HrFormat < 10? '0'+hoursIn12HrFormat : hoursIn12HrFormat) + ':' + (minutes < 10? '0'+minutes: minutes)+ ' ' + `<span id="am-pm">${ampm}</span>`
 
     dateEl.innerHTML = days[day] + ', ' + date+ ' ' + months[month]
-
+    times = days[day] + ', ' + date+ ' ' + months[month];
 }, 1000);
 window.addEventListener("load",()=>{
     getWeatherData ();
@@ -64,7 +67,13 @@ const searchStates =async searchText =>{
 }
 
 input_city_name.addEventListener('input',()=> searchStates(input_city_name.value));
-
+xemchitiet.addEventListener('click',()=>{
+    try {
+        getchitiet(long,lat);
+    } catch (error) {
+        
+    }
+});
 btn_find_cityname.addEventListener('click',()=>{
     if(inputnamecity.value===''){
        alert("không để trống")        
@@ -82,6 +91,8 @@ function getnamecitybybutton(city){
 function getWeatherDataByCityName(city) {
         fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&lang=vi&appid=${API_KEY}`).then(res => res.json()).then(data => {
         showWeatherData(data);
+        long= data.city.coord.lon;
+        lat = data.city.coord.lat;
         })
 }
 function getWeatherData () {
@@ -89,6 +100,8 @@ function getWeatherData () {
         let {latitude, longitude } = success.coords;
         fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&lang=vi&appid=${API_KEY}`).then(res => res.json()).then(data => {
         console.log(data)
+        long = longitude;
+        lat = latitude;
         showWeatherData(data);
         })
     })
@@ -109,8 +122,8 @@ function showWeatherData (data){
     let {main,description,icon} = data.list[0].weather[0];
     let {speed} = data.list[0].wind;
     var nhietdo = Math.round(temp-273);
-    var nhietdocaonhat = Math.round(temp_max-273);
-    var nhietdothapnhat = Math.round(temp_min-273);
+    var nhietdocaonhat = Math.floor(temp_max-273);
+    var nhietdothapnhat = Math.floor(temp_min-273);
     var rains=0;
     timezone.innerHTML = data.city.country + " / " +data.city.name ;
     countryEl.innerHTML = data.city.coord.lat + 'N  - ' + data.city.coord.lon+'E';
@@ -176,7 +189,7 @@ function showWeatherData (data){
             currentTempEl.innerHTML = `
             <img src="http://openweathermap.org/img/wn/${icon}.png" alt="weather icon" class="w-icon">
             <div class="other">
-                <div class="day">Hôm nay</div>
+                <div class="day" >Hôm nay</div>
                 <div class="templ">Cao nhất - ${nhietdocaonhat}&#176;C</div>
                 <div class="templ">Thấp nhất - ${nhietdothapnhat}&#176;C</div>
             </div>
@@ -194,4 +207,35 @@ function showWeatherData (data){
         }
     })
     weatherForecastEl.innerHTML = otherDayForcast;
+
+    
 }
+ function getchitiet(long,lat){
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&lang=vi&appid=${API_KEY}`).then(res => res.json()).then(data => {
+    thongtinchitiet.innerHTML=`
+                  <div class="datec" id="date">${times}  -</div>
+                  <div id="country" class="countryc">-  ${data.city.name}</div>
+                  <div class="time-zonec" id="time-zone">/(${data.city.country})</div>
+    `
+    let listchitietscroll=''
+    data.list.forEach((day, idx) => {
+        var checktime = window.moment(day.dt_txt).format('HH:mm');
+        var nhietdotrungbinh =Math.round(day.main.temp-273);
+        var descriptiondubao =day.weather[0].description;
+        if(idx <= 12){
+            listchitietscroll += `
+            <div class="nav-item col-xl-2">
+                        <div class="card " >
+                          <div class="card-body">
+                            <h5 class="card-title">${checktime}</h5>
+                            <img class="card-img-top" src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="icon ${descriptiondubao}">
+                            <p class="card-text">${descriptiondubao}<br>${nhietdotrungbinh}&#176;C</p>
+                          </div>
+                        </div>
+                      </div>
+            `
+        }
+    })
+    chitietscroll.innerHTML = listchitietscroll;
+    })
+ }
