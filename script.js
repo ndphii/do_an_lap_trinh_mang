@@ -118,21 +118,61 @@ function getbackground(main){
 }
 function showWeatherData (data){
     let {sunrise, sunset} = data.city;
-    let {temp,temp_max,temp_min,humidity,sea_level,pressure} = data.list[0].main;
+    let {feels_like,humidity,sea_level,pressure} = data.list[0].main;
     let {main,description,icon} = data.list[0].weather[0];
     let {speed} = data.list[0].wind;
-    var nhietdo = Math.round(temp-273);
-    var nhietdocaonhat = Math.floor(temp_max-273);
-    var nhietdothapnhat = Math.floor(temp_min-273);
+    var nhietdo = Math.floor(feels_like-273);
+    var Numbertempmax,Numbertempmin;
+    Numbertempmax = Math.floor(data.list[0].main.feels_like-273);
+    Numbertempmin = Math.floor(data.list[0].main.feels_like-273);
+    var nhietdocaonhat ;
+    var nhietdothapnhat ;
     var rains=0;
     timezone.innerHTML = data.city.country + " / " +data.city.name ;
     countryEl.innerHTML = data.city.coord.lat + 'N  - ' + data.city.coord.lon+'E';
     if(main==="Rain"){
         const x = Object.values(data.list[0].rain);
         rains=x[0];
-        console.log(rains[0]);
     }
+   
+    let otherDayForcast = ''
+    
+    data.list.forEach((day, idx) => {
+        
+        var checktimday = window.moment(day.dt_txt).format('HH:mm:ss');
+        var descriptiondubao =day.weather[0].description;
+        var nhietdotrungbinh =Math.floor(day.main.feels_like-273);
+
+        if(idx <= 12){
+            if(nhietdotrungbinh>=Numbertempmax){
+                Numbertempmax = nhietdotrungbinh;
+                nhietdocaonhat = Numbertempmax;
+            }
+            if (nhietdotrungbinh<=Numbertempmin){
+                Numbertempmin = nhietdotrungbinh;
+                nhietdothapnhat = Numbertempmin;
+            }
+        }
+        if(idx!=0 && checktimday==="00:00:00") {           
+               otherDayForcast += `
+                    <div class="weather-forecast-item">
+                        <div class="day">${window.moment(day.dt*1000).format('ddd DD/MM')}</div>
+                        <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
+                        <div class="templ">${nhietdotrungbinh}&#176;C</div>
+                        <div class="templ">${descriptiondubao}</div>
+                    </div>
+                 `
+        }
+    })
     getbackground(main);
+    currentTempEl.innerHTML = `
+    <img src="http://openweathermap.org/img/wn/${icon}.png" alt="weather icon" class="w-icon">
+    <div class="other">
+        <div class="day" >Hôm nay</div>
+        <div class="templ">Cao nhất - ${nhietdocaonhat}&#176;C</div>
+        <div class="templ">Thấp nhất - ${nhietdothapnhat}&#176;C</div>
+    </div>
+    `
     nhietdoto.innerHTML = 
     `<div class="temp">
         <div class="textnhiet">${nhietdo}</div>
@@ -179,33 +219,6 @@ function showWeatherData (data){
     </div>
     
     `;
-   
-    let otherDayForcast = ''
-    data.list.forEach((day, idx) => {
-        var checktimday = window.moment(day.dt_txt).format('HH:mm:ss');
-        var nhietdotrungbinh =Math.round(day.main.temp-273);
-        var descriptiondubao =day.weather[0].description;
-        if(idx == 0){
-            currentTempEl.innerHTML = `
-            <img src="http://openweathermap.org/img/wn/${icon}.png" alt="weather icon" class="w-icon">
-            <div class="other">
-                <div class="day" >Hôm nay</div>
-                <div class="templ">Cao nhất - ${nhietdocaonhat}&#176;C</div>
-                <div class="templ">Thấp nhất - ${nhietdothapnhat}&#176;C</div>
-            </div>
-            `
-        }else if(idx!=0 && checktimday==="00:00:00") {           
-               //console.log("list:"+idx+" ngày cập nhật:"+day.dt_txt+" nhiệt:"+nhietdotrungbinh+"trạng thái:"+descriptiondubao);
-               otherDayForcast += `
-                    <div class="weather-forecast-item">
-                        <div class="day">${window.moment(day.dt*1000).format('ddd DD/MM')}</div>
-                        <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon" class="w-icon">
-                        <div class="templ">${nhietdotrungbinh}&#176;C</div>
-                        <div class="templ">${descriptiondubao}</div>
-                    </div>
-                 `
-        }
-    })
     weatherForecastEl.innerHTML = otherDayForcast;
 
     
@@ -220,7 +233,7 @@ function showWeatherData (data){
     let listchitietscroll=''
     data.list.forEach((day, idx) => {
         var checktime = window.moment(day.dt_txt).format('HH:mm');
-        var nhietdotrungbinh =Math.round(day.main.temp-273);
+        var nhietdotrungbinh =Math.floor(day.main.feels_like-273);
         var descriptiondubao =day.weather[0].description;
         if(idx <= 12){
             listchitietscroll += `
