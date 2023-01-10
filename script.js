@@ -132,26 +132,33 @@ function getnamecitybybutton(city) {
     inputnamecity.value = "";
     matchlist.innerHTML = "";
 }
+
+// lấy dữ liệu thogno qua tên thành phố được input từ khung tìm kiếm
 function getWeatherDataByCityName(city) {
     /*
      fetch ni trỏ tới ... còn https://api.open.... ni là cú pháp mà website đăng ký dữ liệu api cũng cấp
      bắt buộc phải gõ đúng như nó yêu cầu link đọc dữ liệu https://openweathermap.org/forecast5
     */
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&lang=vi&appid=${API_KEY}`).then(res => res.json()).then(data => {
+
         showWeatherData(data);
         // lấy giá trị kinh tuyến vĩ tuyến lại tí dùng cho hàm khác
         long = data.city.coord.lon;
         lat = data.city.coord.lat;
     })
 }
+
 function getWeatherData() {
     // navigator.geolocation.getCurrentPosition này hiểu đơn giản là dùng để định vị vị trí
     navigator.geolocation.getCurrentPosition((success) => {
-        let { latitude, longitude } = success.coords;
+        let { latitude, longitude } = success.coords; //Xác định một tập hợp các tọa độ của vùng (.coords)
         fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&lang=vi&appid=${API_KEY}`).then(res => res.json()).then(data => {
+
             console.log(data)
+
             long = longitude;
             lat = latitude;
+
             showWeatherData(data);
         })
     })
